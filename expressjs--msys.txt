@@ -1,0 +1,9 @@
+
+
+npx express-generator --ejs --view ejs
+npm install
+npm start
+
+npx nodemon
+nodemon --exec npm start
+cd "C:\0\Dropbox\_common\infotech\web--back-end" && /mingw64/lib/nodemon --exec npm start
