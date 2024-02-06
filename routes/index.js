@@ -1,10 +1,86 @@
-var express = require('express');
-var router = express.Router();
+//var express = require('express');
+//var router = express.Router();
+import express from "express";
+let router = express.Router();
+export default router
+
+import knex_module from "knex"
+const knex = knex_module({
+  client: 'pg', version: '8.6',
+  connection: {
+    host: '127.0.0.1',
+    user: "postgres",
+    password: "postgres",
+    database: 'knex-test'
+  }
+})
+
+router.get('/', function (req, res, next) {
+  knex
+    .from('newtable')
+    .select('column1', 'column2')
+    .then(function (output_rows) {
+      res.render('index', { items: output_rows, title: 'Express nel corso NodeJS !!! restart 2' })
+    })
+});
+
+/*
+async function main_rows() {
+  const rows = await knex
+    .from('newtable')
+    .select('column1', 'column2')
+  //console.log(rows)
+
+  //let ejs = require('ejs');
+  //import {render as ejs_render} from "ejs";
+  //
+  //let people = ['geddy', 'neil', 'alex'];
+  //let html = ejs_render('<%= people.join(", "); %>', { people: people });
+  //console.log(html);
+
+  let template = `<ul>
+  <% for(let item of items) { %>
+    <li>
+      <strong><%= item.column1 %></strong>: <%= item.column2 %>
+    </li>
+  <% } %>
+</ul>`
+  //console.log(ejs_render(template, { items: rows }))
+
+  await knex.destroy()
+
+  //return ejs_render(template, { items: rows });
+
+  return rows
+
+}
+*/
+
+/*
+// old answer // FROM: https://stackoverflow.com/questions/34094806/return-from-a-promise-then
+function justTesting() {
+  return promise.then(function(output) {
+    return output + 1;
+  });
+}
+*/
+
+/*
+function rows_from_knex(){
+  // let rows = await main_rows();
+  return knex
+    .from('newtable')
+    .select('column1', 'column2')
+    //.then(function(output) { return output; });
+}
+*/
 
 /* GET home page. */
+/*
 router.get('/', function (req, res, next) {
   // // http://localhost:3000/
 
+  /--
   let items = [
     { column1: "column1", column2: "column2" },
     {
@@ -16,7 +92,22 @@ router.get('/', function (req, res, next) {
       column2: "database server system"
     },
   ]
-  res.render('index', { items, title: 'Express nel corso NodeJS !!! restart 2' });
+  --/
+  ///-
+  ////let rows = await main_rows();
+  let rows = rows_from_knex();
+  ////res.render('index', { items: rows, title: 'Express nel corso NodeJS !!! restart 2' });
+  rows.then(function(output_rows){
+    res.render('index', { items: output_rows, title: 'Express nel corso NodeJS !!! restart 2' });
+  });
+  //-/
+  knex
+    .from('newtable')
+    .select('column1', 'column2')
+    .then(function(output_rows){
+      res.render('index', { items: output_rows, title: 'Express nel corso NodeJS !!! restart 2' })
+    })
 });
+*/
 
-module.exports = router;
+//export default router;

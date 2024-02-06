@@ -1,15 +1,35 @@
 // http://localhost:3000/
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+//var createError = require('http-errors');
+import createError from "http-errors";
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var express = require('express');
+import express from "express";
 
-var app = express();
+//var path = require('path');
+import path from "path";
+
+//var cookieParser = require('cookie-parser');
+import cookieParser from "cookie-parser";
+
+//var logger = require('morgan');
+import logger from "morgan";
+
+
+//var indexRouter = require('./routes/index');
+import indexRouter from "./routes/index.js";
+
+//var usersRouter = require('./routes/users');
+import usersRouter from "./routes/users.js";
+
+let app = express();
+export default app
+
+// for : __dirname
+///import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename); // !!! https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,12 +45,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -40,4 +60,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+//export default app;
