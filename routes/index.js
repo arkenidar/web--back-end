@@ -25,6 +25,28 @@ router.get('/', function (req, res, next) {
 });
 
 /*
+CREATE TABLE public.newtable (
+    column1 character varying,
+    column2 character varying
+);
+*/
+
+/*
+INSERT INTO public.newtable(
+	column1, column2)
+	VALUES ('PostgreSQL (BSD licensed)', 'database server system');
+
+INSERT INTO public.newtable(
+  column1, column2)
+  VALUES ('ExpressJS (from OpenJS foundation)', 'HTTP server that is programmable by JavaScript');
+
+INSERT INTO newtable (column1, column2)
+VALUES (
+    'column1:character varying',
+    'column2:character varying'
+  );
+*/
+/*
 async function main_rows() {
   const rows = await knex
     .from('newtable')
