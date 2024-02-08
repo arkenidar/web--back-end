@@ -4,14 +4,15 @@ import express from "express";
 let router = express.Router();
 export default router
 
+//import { pg_passwd } from "./secrets.js"
 import knex_module from "knex"
 const knex = knex_module({
-  client: 'pg', version: '8.6',
+  client: 'mysql', version: '2.18',
   connection: {
     host: '127.0.0.1',
-    user: "postgres",
-    password: "postgres",
-    database: 'knex-test'
+    user: "root",
+    password: "password",
+    database: 'knex_test'
   }
 })
 

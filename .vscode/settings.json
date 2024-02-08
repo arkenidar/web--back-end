@@ -1,13 +1,30 @@
 {
     "sqltools.connections": [
-        /* mtxr.sqltools-driver-pg */
         {
+            "name": "local 1 mysql",
+            
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            
+            "database": "knex_test",
+            "username": "root",
+            "password": "password"
+        },
+        {
+            "name": "local 2 pgsql",
+
             "previewLimit": 50,
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "local",
-            "database": "knex-test",
+            
+            "database": "knex_test",
             "username": "postgres",
             "password": "postgres"
         }
