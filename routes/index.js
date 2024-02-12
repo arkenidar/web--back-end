@@ -5,13 +5,28 @@ let router = express.Router();
 export default router
 
 //import { pg_passwd } from "./secrets.js"
+
+var mysql = {}
+mysql.client = 'mysql'
+mysql.version = '2.18'
+mysql.user = "root"
+mysql.password = "password"
+
+var postgresql = {}
+postgresql.client = "pg"
+postgresql.version = "8.11"
+postgresql.user = "postgres"
+postgresql.password = "postgres"
+
+var db = mysql // mysql or postgresql
+
 import knex_module from "knex"
 const knex = knex_module({
-  client: 'mysql', version: '2.18',
+  client: db.client, version: db.version,
   connection: {
     host: '127.0.0.1',
-    user: "root",
-    password: "password",
+    user: db.user,
+    password: db.password,
     database: 'knex_test'
   }
 })
@@ -34,8 +49,8 @@ CREATE TABLE public.newtable (
 
 /*
 INSERT INTO public.newtable(
-	column1, column2)
-	VALUES ('PostgreSQL (BSD licensed)', 'database server system');
+  column1, column2)
+  VALUES ('PostgreSQL (BSD licensed)', 'database server system');
 
 INSERT INTO public.newtable(
   column1, column2)
