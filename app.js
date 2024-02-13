@@ -60,4 +60,37 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+//====================================================
+
+//import { pg_passwd } from "./secrets.js"
+
+var mysql = {}
+mysql.client = 'mysql'
+mysql.version = '2.18'
+mysql.user = "root"
+mysql.password = "password"
+
+var postgresql = {}
+postgresql.client = "pg"
+postgresql.version = "8.11"
+postgresql.user = "postgres"
+postgresql.password = "postgres"
+
+var db = mysql // mysql or postgresql
+
+import knex_module from "knex"
+const knex = knex_module({
+  client: db.client, version: db.version,
+  connection: {
+    host: '127.0.0.1',
+    user: db.user,
+    password: db.password,
+    database: 'knex_test'
+  }
+})
+
+app.set("knex", knex)
+
+//====================================================
+
 //export default app;
