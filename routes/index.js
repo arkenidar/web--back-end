@@ -31,13 +31,11 @@ const knex = knex_module({
   }
 })
 
-router.get('/', function (req, res, next) {
-  knex
+router.get('/', async function (req, res, next) {
+  const output_rows = await knex
     .from('newtable')
     .select('column1', 'column2')
-    .then(function (output_rows) {
-      res.render('index', { items: output_rows, title: 'Express nel corso NodeJS !!! restart 2' })
-    })
+  res.render('index', { items: output_rows, title: 'Express nel corso NodeJS !!! restart 2' })
 });
 
 /*
