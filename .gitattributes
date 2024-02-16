@@ -5,7 +5,7 @@
 ## *.c text
 ## *.h text
 *.txt text
-bin/www text
+*.js text
 
 # Files with CRLF line endings on checkout
 ## *.sln text eol=crlf

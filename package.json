@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start2": "node ./bin/www",
-    "start": "npx nodemon ./bin/www"
+    "start2": "node ./bin/www.js",
+    "start": "npx nodemon ./bin/www.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
