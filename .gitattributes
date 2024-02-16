@@ -1,15 +1,16 @@
 # Set the default behavior
-* text=auto eol=lf
+* text eol=lf
 
 # Explicitly declare text files to be normalized and converted to native line endings
 ## *.c text
 ## *.h text
-*.txt text
-*.js text
+
+## *.txt text
+## *.js text
 
 # Files with CRLF line endings on checkout
 ## *.sln text eol=crlf
 
 # Denote binary files that should not be modified
-## *.png binary
+*.png binary
 ## *.jpg binary
