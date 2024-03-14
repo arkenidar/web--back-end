@@ -5,3 +5,4 @@
 - Automatic Restart is done by NodeMon `npx nodemon ./bin/www.js`
 - Read inside `package.json`
 - Git ignores `node_modules`
+- http://localhost:3000/
