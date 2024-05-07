@@ -45,12 +45,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function (_, _, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -68,14 +68,14 @@ var mysql = {}
 mysql.client = 'mysql2'
 mysql.user = "username"
 mysql.password = "password"
-mysql.database = "express-db"
+mysql.database = "express_backend"
 
 var postgresql = {}
 postgresql.client = "pg"
 postgresql.version = "8.11"
 postgresql.user = "postgres"
 postgresql.password = "postgres"
-postgresql.database = "express-db"
+postgresql.database = "express_backend"
 
 var db = mysql // mysql or postgresql
 
@@ -103,6 +103,8 @@ await knex.schema.hasTable("chat_messages").then(function (exists) {
     table.timestamp('creation_timestamp').defaultTo(knex.fn.now())
   })
 })
+
+// http://localhost:3000/
 
 //====================================================
 
