@@ -12,14 +12,15 @@
   <h1>
     <%= title %>
   </h1>
-  <p>Welcome to <%= title %></p>
+  <p>Welcome to <%= title %>
+  </p>
 
   <ul>
     <% for(let item of items) { %>
       <li>
         <strong>
-          <%= item.column1 %>
-        </strong>: <%= item.column2 %>.
+          <%= item.sender %>
+        </strong>: <%= item.message_text %>.
       </li>
       <% } %>
   </ul>

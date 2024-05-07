@@ -65,16 +65,17 @@ app.use(function (err, req, res, next) {
 //import { pg_passwd } from "./secrets.js"
 
 var mysql = {}
-mysql.client = 'mysql'
-mysql.version = '2.18'
-mysql.user = "root"
+mysql.client = 'mysql2'
+mysql.user = "username"
 mysql.password = "password"
+mysql.database = "express-db"
 
 var postgresql = {}
 postgresql.client = "pg"
 postgresql.version = "8.11"
 postgresql.user = "postgres"
 postgresql.password = "postgres"
+postgresql.database = "express-db"
 
 var db = mysql // mysql or postgresql
 
@@ -82,14 +83,26 @@ import knex_module from "knex"
 const knex = knex_module({
   client: db.client, version: db.version,
   connection: {
-    host: '127.0.0.1',
+    host: "127.0.0.1",
     user: db.user,
     password: db.password,
-    database: 'knex_test'
+    database: db.database
   }
 })
 
 app.set("knex", knex)
+
+await knex.schema.hasTable("chat_messages").then(function (exists) {
+
+  if (exists) return
+
+  return knex.schema.createTable('chat_messages', function (table) {
+    table.increments('id').primary()
+    table.string('message_text').notNullable()
+    table.string('sender').notNullable()
+    table.timestamp('creation_timestamp').defaultTo(knex.fn.now())
+  })
+})
 
 //====================================================
 
