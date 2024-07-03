@@ -104,6 +104,19 @@ await knex.schema.hasTable("chat_messages").then(function (exists) {
   })
 })
 
+await knex.schema.hasTable("product").then(function (exists) {
+
+  if (exists) return
+
+  return knex.schema.createTable('product', function (table) {
+    table.increments('id').primary()
+    table.string('name').notNullable()
+    table.string('desc').notNullable()
+    table.decimal('price', 10, 2).notNullable()
+    table.timestamp('time').defaultTo(knex.fn.now())
+  })
+})
+
 // http://localhost:3000/
 
 //====================================================

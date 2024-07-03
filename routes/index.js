@@ -33,3 +33,18 @@ app.get('/ejs', async function (request, response) {
 
 })
 
+// http://localhost:3000/products.json
+app.get('/products.json', async function (request, response) {
+  const products = await request.app.get("knex")
+    .from('product')
+    .select('name', 'desc', 'price', 'id')
+  response.json(products)
+})
+
+// http://localhost:3000/products.html
+app.get('/products.html', async function (request, response) {
+  const products = await request.app.get("knex")
+    .from('product')
+    .select('name', 'desc', 'price', 'id')
+  response.render("product_listing", { products })
+})
