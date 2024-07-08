@@ -39,6 +39,18 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// https://expressjs.com/en/resources/middleware/cookie-session.html
+// https://github.com/senchalabs/connect#middleware
+// after cookieParser() middleware !!!
+// store session state in browser cookie
+// shell: npm install cookie-session
+//// var cookieSession = require('cookie-session'); // using ESM not CJS modules
+import cookieSession from "cookie-session"; // ES modules
+app.use(cookieSession({
+  keys: ['secret1', 'secret2'] // change for security and hide in secrets.js etc.
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

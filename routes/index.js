@@ -48,3 +48,14 @@ app.get('/products.html', async function (request, response) {
     .select('name', 'desc', 'price', 'id')
   response.render("product_listing", { products })
 })
+
+// http://localhost:3000/session_test.json
+app.get('/session_test.json', function (request, response) {
+  if (typeof request.session.session_test === 'undefined')
+    request.session.session_test = -1;
+  var session_test = request.session.session_test;
+  session_test += 1;
+  session_test %= 10;
+  request.session.session_test = session_test;
+  response.json({ session_test: session_test + 1 });
+});
