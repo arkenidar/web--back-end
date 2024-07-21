@@ -1,5 +1,7 @@
 // http://localhost:3000/
 
+import "dotenv/config"
+
 //var createError = require('http-errors');
 import createError from "http-errors";
 
@@ -93,6 +95,17 @@ var db = mysql // mysql or postgresql
 
 import knex_module from "knex"
 const knex = knex_module({
+  client: 'pg',
+  connection: {
+    host: process.env.POSTGRES_HOST,
+    user: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
+  },
+})
+
+/*
+const knex = knex_module({
   client: db.client, version: db.version,
   connection: {
     host: "127.0.0.1",
@@ -101,6 +114,7 @@ const knex = knex_module({
     database: db.database
   }
 })
+*/
 
 app.set("knex", knex)
 
