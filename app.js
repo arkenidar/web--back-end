@@ -2,6 +2,8 @@
 
 import "dotenv/config"
 
+console.log("process.env.POSTGRES_HOST: ", process.env.POSTGRES_HOST)
+
 //var createError = require('http-errors');
 import createError from "http-errors";
 
